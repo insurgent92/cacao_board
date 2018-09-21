@@ -48,7 +48,7 @@ def myfunc():
 def  Keyboard():
     dataSend = {
         "type" : "buttons",
-        "buttons" : ["팡팡이와 대화하기!(수정)", "도움말, 로스보기"]
+        "buttons" : ["팡팡이와 대화하기!(수정)", "도움말"]
     }
     return jsonify(dataSend)
  
@@ -65,8 +65,9 @@ def Message():
 
     elif content == u"도움말":
         dataSend = {
-        "type" : "buttons",
-        "buttons" : ["내가 도와주도록 하지", "로스보기"]
+            "message": {
+                "text": "팡팡이 명령어 목록!\n1. 도움말\n2. 안녕!\n3. 로스확인!\n4. 저기요~"
+            }
         }
 
     elif u"로스보기" in content:
