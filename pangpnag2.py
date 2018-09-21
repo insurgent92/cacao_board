@@ -50,7 +50,7 @@ def Message():
     elif u"로스확인" in content:
         
         try:
-            f = open('data.csv', 'r', encoding='utf-8')
+            f = open('/home/ubuntu/cacao_board/data.csv', 'r', encoding='utf-8')
             rdr = csv.reader(f)
             for line in rdr:
                 pass
