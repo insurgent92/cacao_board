@@ -9,6 +9,14 @@ import csv
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+def myfunc():
+    dataSend = {
+            "message": {
+                "text": "이거도 보내지냐?"
+            }
+        }
+    return dataSend
  
 @app.route('/keyboard')
 def  Keyboard():
@@ -41,11 +49,7 @@ def Message():
             }
         }
     elif u"저기" in content:
-        dataSend = {
-            "message": {
-                "text": "볼일 끝났으면 썩 꺼져!"
-            }
-        }
+        dataSend = myfunc()
 
     elif u"로스확인" in content:
         
