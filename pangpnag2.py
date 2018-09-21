@@ -56,10 +56,10 @@ def  Keyboard():
 def Message():
     dataReceive = request.get_json()
     content = dataReceive['content']
-    if content == u"팡팡이와 대화하기!":
+    if content == u"도움말":
         dataSend = {
             "message": {
-                "text": "팡팡이 명령어 목록!\n1. 도움말\n2. 안녕!\n3. 로스확인!\n4. 저기요~"
+                "text": "지루한 귀성길 내 모델은 잘 학습되고 있나(by visionNoob)\n1. 도움말\n2. 안녕!\n3. 로스보기!\n4. 저기요~"
             }
         }
 
