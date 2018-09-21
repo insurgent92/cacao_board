@@ -10,9 +10,8 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-
 def getData():
-    loss_text = 'loss : '
+    loss_text = ["epoch:","iteration","train_loss:","train_acc:","validation_loss:", "validation_acc:"]
     try:
         #f = open('/home/ubuntu/cacao_board/data.csv', 'r', encoding='utf-8')
         f = open('/home/ubuntu/cacao_board/data.csv', 'r')
@@ -20,9 +19,15 @@ def getData():
         for line in rdr:
             pass
         f.close()
-        loss = line[1]
-        loss_text = loss_text + loss
-            
+        epoch = loss_text[0] + line[0] + "\n"
+        iteration = loss_text[1] + line[1] + "\n"
+        train_loss = loss_text[2] + line[2] + "\n"
+        train_acc = loss_text[3] + line[3] + "\n"
+        validation_loss = loss_text[4] + line[4] + "\n"
+        validation_acc = loss_text[5] + line[5]
+
+        loss_text = epoch + iteration + train_loss + train_acc + validation_loss + validation_acc
+             
     except:
         loss_text = loss_text + "읽을 수 없당"
 
@@ -43,7 +48,7 @@ def myfunc():
 def  Keyboard():
     dataSend = {
         "type" : "buttons",
-        "buttons" : ["팡팡이와 대화하기!(수정)", "도움말"]
+        "buttons" : ["팡팡이와 대화하기!(수정)", "도움말, 로스보기"]
     }
     return jsonify(dataSend)
  
@@ -57,32 +62,15 @@ def Message():
                 "text": "팡팡이 명령어 목록!\n1. 도움말\n2. 안녕!\n3. 로스확인!\n4. 저기요~"
             }
         }
+
     elif content == u"도움말":
         dataSend = {
-            "message": {
-                "text": "이제 곧 정식 버전이 출시될거야. 조금만 기다려~~~"
-            }
+        "type" : "buttons",
+        "buttons" : ["내가 도와주도록 하지", "로스보기"]
         }
-    elif u"안녕" in content:
-        dataSend = {
-            "message": {
-                "text": "안녕~~ 반가워 ㅎㅎ"
-            }
-        }
-    elif u"저기" in content:
-        dataSend = myfunc()
 
-    elif u"로스확인" in content:
-        
-        loss = "3"
-        
-        out_content = "현재 Loss는" + loss + "이야"
-        
-        dataSend = {
-            "message":{
-                "test": out_content
-            }
-        }
+    elif u"로스보기" in content:
+        dataSend = myfunc()
 
     else:
         dataSend = {
@@ -90,6 +78,7 @@ def Message():
                 "text": content
             }
         }
+
     return jsonify(dataSend)
  
 if __name__ == "__main__":
