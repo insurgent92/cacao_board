@@ -10,7 +10,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
  
 @app.route('/keyboard')
-def  ():
+def  Keyboard():
     dataSend = {
         "type" : "buttons",
         "buttons" : ["팡팡이와 대화하기!(수정)", "도움말"]
