@@ -10,10 +10,12 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+text = "hi"
+
 def myfunc():
     dataSend = {
             "message": {
-                "text": "이거도 보내지냐?"
+                "text": text
             }
         }
     return dataSend
