@@ -10,9 +10,28 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-text = "hi"
+
+def getData():
+    loss_text = 'loss : '
+    try:
+        #f = open('/home/ubuntu/cacao_board/data.csv', 'r', encoding='utf-8')
+        f = open('/home/ubuntu/cacao_board/data.csv', 'r')
+        rdr = csv.reader(f)
+        for line in rdr:
+            pass
+        f.close()
+        loss = line[1]
+        loss_text = loss_text + loss
+            
+    except:
+        loss_text = loss_text + "읽을 수 없당"
+
+    return loss_text
+
 
 def myfunc():
+
+    text = getData()
     dataSend = {
             "message": {
                 "text": text
@@ -55,26 +74,7 @@ def Message():
 
     elif u"로스확인" in content:
         
-        try:
-            #f = open('/home/ubuntu/cacao_board/data.csv', 'r', encoding='utf-8')
-            f = open('/home/ubuntu/cacao_board/data.csv', 'r')
-            rdr = csv.reader(f)
-            for line in rdr:
-                pass
-            f.close()
-            loss = line[1]
-            pass
-            
-        except:
-            loss = "읽을 수 없당"
-            out_content = "현재 Loss는" + loss + "이야"
-
-            dataSend = {
-                "message":{
-                    "test": "망했오"
-                }
-            }
-            return jsonify(dataSend)
+        loss = "3"
         
         out_content = "현재 Loss는" + loss + "이야"
         
