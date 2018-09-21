@@ -65,18 +65,19 @@ def Message():
 
             dataSend = {
                 "message":{
-                    "test": out_content
+                    "test": "망했오"
                 }
             }
             return jsonify(dataSend)
         
         out_content = "현재 Loss는" + loss + "이야"
-
+        
         dataSend = {
             "message":{
                 "test": out_content
             }
         }
+
     else:
         dataSend = {
             "message": {
