@@ -5,8 +5,9 @@
 #---------------------------------
  
 import os
+import csv
 from flask import Flask, request, jsonify
- 
+
 app = Flask(__name__)
  
 @app.route('/keyboard')
@@ -24,7 +25,7 @@ def Message():
     if content == u"팡팡이와 대화하기!":
         dataSend = {
             "message": {
-                "text": "팡팡이 명령어 목록!\n1. 도움말\n2. 안녕!\n3. 저기요~"
+                "text": "팡팡이 명령어 목록!\n1. 도움말\n2. 안녕!\n3. 로스확인!\n4. 저기요~"
             }
         }
     elif content == u"도움말":
@@ -43,6 +44,21 @@ def Message():
         dataSend = {
             "message": {
                 "text": "볼일 끝났으면 썩 꺼져!"
+            }
+        }
+
+    elif u"로스확인" in content:
+        
+        f = open('data.csv', 'r', encoding='utf-8')
+        rdr = csv.reader(f)
+        for line in rdr:
+            pass
+        f.close()   
+        loss = line[1]
+
+        dataSend = {
+            "message":{
+                "test": "현제 Loss는" + loss + "이야"
             }
         }
     else:
