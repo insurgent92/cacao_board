@@ -58,11 +58,20 @@ def Message():
             f.close()
             loss = line[1]
             pass
+            
         except:
             loss = "읽을 수 없당"
-            pass
+            out_content = "현재 Loss는" + loss + "이야"
+
+            dataSend = {
+                "message":{
+                    "test": out_content
+                }
+            }
+            return jsonify(dataSend)
         
         out_content = "현재 Loss는" + loss + "이야"
+
         dataSend = {
             "message":{
                 "test": out_content
