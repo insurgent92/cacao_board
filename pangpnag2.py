@@ -20,11 +20,11 @@ def getData():
             pass
         f.close()
         epoch = loss_text[0] + line[0] + "\n"
-        iteration = loss_text[1] + line[1] + "\n"
-        train_loss = loss_text[2] + line[2] + "\n"
-        train_acc = loss_text[3] + line[3] + "\n"
-        validation_loss = loss_text[4] + line[4] + "\n"
-        validation_acc = loss_text[5] + line[5]
+        iteration = loss_text[1] + line[1] + "/" + line[2] + "\n"
+        train_loss = loss_text[2] + line[3] + "\n"
+        train_acc = loss_text[3] + line[4] + "\n"
+        validation_loss = loss_text[4] + line[5] + "\n"
+        validation_acc = loss_text[5] + line[6]
 
         loss_text = epoch + iteration + train_loss + train_acc + validation_loss + validation_acc
              
