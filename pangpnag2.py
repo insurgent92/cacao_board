@@ -49,16 +49,22 @@ def Message():
 
     elif u"로스확인" in content:
         
-        f = open('data.csv', 'r', encoding='utf-8')
-        rdr = csv.reader(f)
-        for line in rdr:
+        try:
+            f = open('data.csv', 'r', encoding='utf-8')
+            rdr = csv.reader(f)
+            for line in rdr:
+                pass
+            f.close()
+            loss = line[1]
             pass
-        f.close()   
-        loss = line[1]
-
+        except:
+            loss = "읽을 수 없당"
+            pass
+        
+        out_content = "현재 Loss는" + loss + "이야"
         dataSend = {
             "message":{
-                "test": "현제 Loss는" + loss + "이야"
+                "test": out_content
             }
         }
     else:
